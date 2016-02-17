@@ -38,6 +38,10 @@
 #include <sys/types.h>
 #include <dlfcn.h>
 
+#ifdef _PRC_COMPATIBILITY_PACKAGE_
+#include "ABIPicker.h"
+#endif
+
 #define APK_LIB "lib/"
 #define APK_LIB_LEN (sizeof(APK_LIB) - 1)
 
@@ -58,6 +62,11 @@
 #define LIB_UNINIT             0
 #define LIB_INITED_AND_FAIL    -1
 #define LIB_INITED_AND_SUCCESS 1
+
+#ifdef _PRC_COMPATIBILITY_PACKAGE_
+#define X86ABI     "x86"
+#define X8664ABI   "x86_64"
+#endif
 
 namespace android {
 
@@ -572,6 +581,56 @@ com_android_internal_content_NativeLibraryHelper_findSupportedAbi(JNIEnv *env, j
     return (jint) findSupportedAbi(env, apkHandle, javaCpuAbisToSearch);
 }
 
+static jint
+com_android_internal_content_NativeLibraryHelper_findSupportedAbi_replace(
+        JNIEnv *env,
+        jclass clazz,
+        jlong apkHandle,
+        jobjectArray javaCpuAbisToSearch,
+        jstring apkPkgName)
+{
+#ifdef _PRC_COMPATIBILITY_PACKAGE_
+    const int numAbis = env->GetArrayLength(javaCpuAbisToSearch);
+    Vector<ScopedUtfChars*> supportedAbis;
+    for (int i = 0; i < numAbis; i++) {
+        ScopedUtfChars* abiName = new ScopedUtfChars(env,
+                 (jstring)env->GetObjectArrayElement(
+                     javaCpuAbisToSearch, i));
+        supportedAbis.push_back(abiName);
+    }
+
+    int abiType = findSupportedAbi(env, apkHandle, javaCpuAbisToSearch);
+    do {
+
+        if (abiType < 0 || abiType >= numAbis ) break ;
+       // if one package's name is on OEM's specific white list, then the
+        // package should be installed as default
+        ScopedUtfChars name(env, apkPkgName);
+         if (isInOEMWhiteList(name.c_str())) {
+            break;
+        }
+
+        if (0 != strcmp(supportedAbis[abiType]->c_str(), X86ABI) &&
+            0 != strcmp(supportedAbis[abiType]->c_str(), X8664ABI)){
+            break;
+        }
+        ABIPicker picker(name.c_str(),supportedAbis);
+        if (!picker.buildNativeLibList((void*)apkHandle)) {
+            break;
+        }
+
+        abiType = picker.pickupRightABI(abiType);
+    } while (false);
+
+    for (int i = 0; i < numAbis; ++i) {
+        delete supportedAbis[i];
+    }
+    return (jint)abiType;
+#else
+    return (jint)findSupportedAbi(env, apkHandle, javaCpuAbisToSearch);
+#endif
+}
+
 enum bitcode_scan_result_t {
   APK_SCAN_ERROR = -1,
   NO_BITCODE_PRESENT = 0,
@@ -638,6 +697,9 @@ static JNINativeMethod gMethods[] = {
             (void *)com_android_internal_content_NativeLibraryHelper_findSupportedAbi},
     {"hasRenderscriptBitcode", "(J)I",
             (void *)com_android_internal_content_NativeLibraryHelper_hasRenderscriptBitcode},
+    {"nativeFindSupportedAbiReplace",
+            "(J[Ljava/lang/String;Ljava/lang/String;)I",
+            (void *)com_android_internal_content_NativeLibraryHelper_findSupportedAbi_replace},
 };
 
 
