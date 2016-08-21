@@ -493,16 +493,14 @@ static pid_t ForkAndSpecializeCommon(JNIEnv* env, uid_t uid, gid_t gid, jintArra
 #endif
      }
 
-#ifndef _COMPATIBILITY_ENHANCEMENT_PACKAGE_
     if (use_native_bridge && dataDir == NULL) {
-        // dataDir should never be null if we need to use a native bridge.
-        // In general, dataDir will never be null for normal applications. It can only happen in
-        // special cases (for isolated processes which are not associated with any app). These are
-        // launched by the framework and should not be emulated anyway.
-        use_native_bridge = false;
-        ALOGW("Native bridge will not be used because dataDir == NULL.");
+      // dataDir should never be null if we need to use a native bridge.
+      // In general, dataDir will never be null for normal applications. It can only happen in
+      // special cases (for isolated processes which are not associated with any app). These are
+      // launched by the framework and should not be emulated anyway.
+      use_native_bridge = false;
+      ALOGW("Native bridge will not be used because dataDir == NULL.");
     }
-#endif
 
     if (!MountEmulatedStorage(uid, mount_external, use_native_bridge)) {
       ALOGW("Failed to mount emulated storage: %s", strerror(errno));
@@ -535,16 +533,8 @@ static pid_t ForkAndSpecializeCommon(JNIEnv* env, uid_t uid, gid_t gid, jintArra
 
     if (use_native_bridge) {
       ScopedUtfChars isa_string(env, instructionSet);
-#ifdef _COMPATIBILITY_ENHANCEMENT_PACKAGE_
-      if (dataDir != NULL) {
-#endif
-          ScopedUtfChars data_dir(env, dataDir);
-          android::PreInitializeNativeBridge(data_dir.c_str(), isa_string.c_str());
-#ifdef _COMPATIBILITY_ENHANCEMENT_PACKAGE_
-      } else {
-          android::PreInitializeNativeBridge(NULL, isa_string.c_str());
-      }
-#endif
+      ScopedUtfChars data_dir(env, dataDir);
+      android::PreInitializeNativeBridge(data_dir.c_str(), isa_string.c_str());
     }
 
     int rc = setresgid(gid, gid, gid);
