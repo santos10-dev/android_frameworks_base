@@ -92,13 +92,15 @@ public class StatusBarWindowManager implements KeyguardMonitor.Callback {
 
     private boolean shouldEnableKeyguardScreenRotation() {
         Resources res = mContext.getResources();
-        boolean enableAccelerometerRotation = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.ACCELEROMETER_ROTATION, 1) != 0;
+        boolean disableAccelerometerRotation = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.ACCELEROMETER_ROTATION, 1) == 0;
         boolean enableLockScreenRotation = CMSettings.System.getInt(mContext.getContentResolver(),
                 CMSettings.System.LOCKSCREEN_ROTATION, 0) != 0;
         return SystemProperties.getBoolean("lockscreen.rot_override", false)
                 || (res.getBoolean(R.bool.config_enableLockScreenRotation)
-                && (enableLockScreenRotation && enableAccelerometerRotation));
+                && enableLockScreenRotation)
+                || (res.getBoolean(R.bool.config_enableLockScreenRotation)
+                && disableAccelerometerRotation);
     }
 
     /**
