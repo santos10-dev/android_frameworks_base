@@ -129,8 +129,8 @@
   <string name="quick_settings_location_battery_saving_label">Estalvi de bateria</string>
   <string name="quick_settings_location_battery_saving_label_twoline">Estalvi\nde bateria</string>
   <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
-  <string name="quick_settings_location_gps_only_label">Només GPS</string>
-  <string name="quick_settings_location_gps_only_label_twoline">Només GPS</string>
+  <string name="quick_settings_location_gps_only_label">Només dispositiu</string>
+  <string name="quick_settings_location_gps_only_label_twoline">Només\ndispositiu</string>
   <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_high_accuracy_label">Alta precisió</string>
   <string name="quick_settings_location_high_accuracy_label_twoline">Alta\nprecisió</string>
@@ -160,6 +160,8 @@
   <string name="accessibility_quick_settings_ambient_display_changed_on">S\'ha activat la pantalla ambient.</string>
   <!-- Caffeine -->
   <string name="quick_settings_caffeine_label">Cafeïna</string>
+  <string name="accessibility_quick_settings_caffeine_off">Cafeïna desactivada</string>
+  <string name="accessibility_quick_settings_caffeine_on">Cafeïna activada</string>
   <!-- Heads up QS tile -->
   <string name="quick_settings_heads_up_label">Notificacions emergents</string>
   <string name="accessibility_quick_settings_heads_up_off">Notificacions emergents apagades.</string>

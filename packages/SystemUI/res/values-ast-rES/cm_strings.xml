@@ -66,6 +66,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">Esto caltién la pantalla nesta vista hasta que se llibera. Caltén primíu\'l botón Atrás pa lliberala.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">Esliza dende l\'iconu pa %1$s</string>
   <string name="lockscreen_message">Toca nun iconu de la esquierda o derecha pa reasignar un atayu na pantalla de bloquéu.</string>
   <string name="lockscreen_default_target">Por defeutu</string>
   <string name="select_application">Esbillar aplicación</string>
@@ -129,8 +130,7 @@
   <string name="quick_settings_location_battery_saving_label">Aforru d\'enerxía</string>
   <string name="quick_settings_location_battery_saving_label_twoline">Aforru\nd\'enerxía</string>
   <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
-  <string name="quick_settings_location_gps_only_label">Namái GPS</string>
-  <string name="quick_settings_location_gps_only_label_twoline">Namái GPS</string>
+  <string name="quick_settings_location_gps_only_label">Namái preséu</string>
   <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_high_accuracy_label">Precisión alta</string>
   <string name="quick_settings_location_high_accuracy_label_twoline">Precisión\nalto</string>
@@ -145,6 +145,7 @@
   <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
   <string name="quick_settings_location_detail_mode_sensors_only_title">Namái preséu</string>
   <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
+  <string name="quick_settings_location_detail_mode_high_accuracy_description">Usa\'l GPS, Wi\u2011Fi, Bluetooth o redes móviles pa determinar l\'allugamientu</string>
   <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
   <string name="quick_settings_location_detail_mode_battery_saving_description">Usa\'l Wi\u2011Fi, Bluetooth o redes móviles pa determinar l\'allugamientu</string>
   <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
@@ -159,8 +160,11 @@
   <string name="accessibility_quick_settings_ambient_display_changed_on">Activóse la pantalla ambiente.</string>
   <!-- Caffeine -->
   <string name="quick_settings_caffeine_label">Cafeína</string>
+  <string name="accessibility_quick_settings_caffeine_off">Cafeína desactivada</string>
+  <string name="accessibility_quick_settings_caffeine_on">Cafeína activada</string>
   <!-- Heads up QS tile -->
-  <string name="quick_settings_heads_up_label">Avisos emerxente</string>
+  <string name="quick_settings_heads_up_label">Avisos
+emerxentes</string>
   <string name="accessibility_quick_settings_heads_up_off">Desactivar notificaciones emerxentes.</string>
   <string name="accessibility_quick_settings_heads_up_on">Activar notificaciones emerxentes.</string>
   <string name="accessibility_quick_settings_heads_up_changed_off">Notificaciones emerxentes desactivaes.</string>

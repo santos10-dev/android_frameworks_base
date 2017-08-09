@@ -130,8 +130,8 @@
   <string name="quick_settings_location_battery_saving_label">Bateria aurreztea</string>
   <string name="quick_settings_location_battery_saving_label_twoline">Bateria\naurreztea</string>
   <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
-  <string name="quick_settings_location_gps_only_label">GPSa besterik ez</string>
-  <string name="quick_settings_location_gps_only_label_twoline">GPSa besterik ez</string>
+  <string name="quick_settings_location_gps_only_label">Gailua bakarrik</string>
+  <string name="quick_settings_location_gps_only_label_twoline">Gailua\nbesterik ez</string>
   <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
   <string name="quick_settings_location_high_accuracy_label">Zehaztasun handia</string>
   <string name="quick_settings_location_high_accuracy_label_twoline">Zehaztasun\nhandia</string>
@@ -161,6 +161,8 @@
   <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient display piztuta.</string>
   <!-- Caffeine -->
   <string name="quick_settings_caffeine_label">Kafeina</string>
+  <string name="accessibility_quick_settings_caffeine_off">Kafeina ez</string>
+  <string name="accessibility_quick_settings_caffeine_on">Kafeina bai</string>
   <!-- Heads up QS tile -->
   <string name="quick_settings_heads_up_label">Jakinarazpen flotatzaileak</string>
   <string name="accessibility_quick_settings_heads_up_off">Jakinarazpen flotatzaileak ezgaituta.</string>
